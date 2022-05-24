@@ -31,3 +31,15 @@ class DetailCheckoutView(generics.RetrieveUpdateDestroyAPIView):
     #PUT funciona correctamente
     #GET funciona correctamente
     #DELETE funciona correctamente
+
+#Obtener datos de un checkout por cliente
+class CheckoutCliente(APIView):
+
+    #metodo GET funciona correctamente
+    def get(self, request, *args, **kwargs):
+        
+        checkouts =  Checkout.objects.filter(cliente=request.query_params.get('cliente')).distinct()
+        tmp = []
+        for u in checkouts:
+            tmp.append(CheckoutSerializer(u).data)
+        return Response(tmp)

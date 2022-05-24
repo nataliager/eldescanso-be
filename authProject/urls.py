@@ -15,6 +15,8 @@ urlpatterns = [
     path('userdetail/', views.UserDetailView.as_view()),#obtener todos los usuarios
     path('user/<str:pk>/', views.DetailUserView.as_view()),#crud usuario 
     path('user-view/', views.UserView.as_view()),#obtener y actualizar datos del usuario logueado
+    path('facturasmes/', views.InformeMensual.as_view()),#informe mensual de ventas
+    path('serviciosmes/', views.InformeMensualServicios.as_view()),#informe mensual de ventas de servicios
 
     #URLs modelo Solicitud
     path('solicitud/', views.SolicitudCreateView.as_view()),#crear una solicitud 
@@ -30,8 +32,8 @@ urlpatterns = [
     path('habitacion/', views.HabitacionCreateView.as_view()),#crear una habitacion
     path('habitaciones/', views.HabitacionView.as_view()),#obtener todas las habitaciones
     path('habitacion/<int:pk>/', views.DetailHabitacionView.as_view()),#crud habitacion
-    path('habitacionfilter/', views.HabitacionFilter.as_view()),#filtro habitacion por tipo
-    path('habitacionestadofilter/', views.EstadoHabitacionFilter.as_view()),#filtro estado en que se encuentra la habitacion
+    path('habitacionfilter/', views.HabitacionFilter.as_view()),#filtro habitaciones disponibles por tipo
+    path('habitacionpreciofilter/', views.PrecioHabitacionFilter.as_view()),#filtro precio de habitacion de acuerdo a su tipo
 
     #URLs modelo TipoHabitacion
     path('tipohabitacion/', views.TipoHabitacionCreateView.as_view()),#crear una habitacion
@@ -43,6 +45,7 @@ urlpatterns = [
     path('checkout/', views.CheckoutCreateView.as_view()),#crear un checkout
     path('checkouts/', views.CheckoutView.as_view()),#obtener todos los checkouts
     path('checkout/<str:pk>/', views.DetailCheckoutView.as_view()),#crud checkout
+    path('checkoutscliente/', views.CheckoutCliente.as_view()),#obtener los checkouts de un cliente
 
     #URLs modelo Factura 
     path('factura/', views.FacturaCreateView.as_view()),#crear una factura
@@ -53,6 +56,7 @@ urlpatterns = [
     path('servicioincluido/', views.ServicioIncluidoCreateView.as_view()),#agregar un servicio incluido 
     path('serviciosincluidos/', views.ServicioIncluidoView.as_view()),#obtener todos los servicios incluidos
     path('servicioincluido/<int:pk>/', views.DetailServicioIncluidoView.as_view()),#crud servicio incluido
+    path('serviciosfactura/', views.ServiciosFactura.as_view()),#obtener servicios de una factura
 
     #URLs modelo Cliente 
     path('cliente/', views.ClienteCreateView.as_view()),#crear un cliente
@@ -69,5 +73,6 @@ urlpatterns = [
     path('reserva/', views.ReservaCreateView.as_view()),#registrar una reserva
     path('reservas/', views.ReservaView.as_view()),#obtener todas las reservas
     path('reserva/<str:pk>/', views.DetailReservaView.as_view()),#crud reserva
+    path('reservacliente/', views.ReservasCliente.as_view()),#reservas de un cliente especifico
 
 ]

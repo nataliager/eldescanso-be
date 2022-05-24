@@ -31,3 +31,15 @@ class DetailServicioIncluidoView(generics.RetrieveUpdateDestroyAPIView):
     #PUT funciona correctamente
     #GET funciona correctamente
     #DELETE funciona correctamente
+
+#Servicios incluidos a una factura
+class ServiciosFactura(APIView):
+    
+    #metodo GET funciona correctamente
+    def get(self, request, *args, **kwargs):
+        
+        servicios =  Servicio_incluido.objects.filter(factura=request.query_params.get('factura')).distinct()
+        tmp = []
+        for u in servicios:
+            tmp.append(ServicioIncluidoSerializer(u).data)
+        return Response(tmp)

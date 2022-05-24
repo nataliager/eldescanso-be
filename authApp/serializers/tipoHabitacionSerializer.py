@@ -5,14 +5,14 @@ class TipoHabitacionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = TipoHabitacion
-        fields = ['tipo', 'precio']  
+        fields = ['tipo','caracteristicas', 'precio']  
 
-    def to_representation(self, obj):  
-        
-        tipohabitacion = TipoHabitacion.objects.get(tipo=obj.tipo)
+        def to_representation(self, obj):  
+            
+            tipohabitacion = TipoHabitacion.objects.get(tipo=obj.tipo)
 
-        return {
-
-            'tipo': tipohabitacion.tipo,
-            'precio': tipohabitacion.precio
-        }
+            return {
+                'tipo': tipohabitacion.tipo,
+                'caracteristicas': tipohabitacion.caracteristicas,
+                'precio': tipohabitacion.precio
+            }

@@ -32,6 +32,7 @@ class DetailClienteHabitualView(generics.RetrieveUpdateDestroyAPIView):
     #GET funciona correctamente
     #DELETE funciona correctamente
 
+#Obtiene el descuento de un cliente habitual por su no_identificacion
 class ClienteHabitualFilter(APIView):
 
     def get(self, request, *args, **kwargs):

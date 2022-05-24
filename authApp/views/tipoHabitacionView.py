@@ -34,7 +34,7 @@ class DetailTipoHabitacionView(generics.RetrieveUpdateDestroyAPIView):
 
 #Filtro de tipo de habitación 
 class TipoHabitacionFilter(APIView):
-
+    
     #Metodo para obtener precio de una habitacion por su tipo (filtro)
     #metodo GET funciona correctamente
     def get(self, request, *args, **kwargs):

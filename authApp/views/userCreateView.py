@@ -1,12 +1,7 @@
 from rest_framework import status, views
 from rest_framework.response import Response
-from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from authApp.serializers.userSerializer import UserSerializer
-from rest_framework_simplejwt.backends import TokenBackend
-from django.conf import settings
-from rest_framework.permissions import IsAuthenticated
-from authApp.models.user import User
-import json
+
 
 class UserCreateView(views.APIView):
 

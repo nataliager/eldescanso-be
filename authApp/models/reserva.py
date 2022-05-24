@@ -4,7 +4,7 @@ from .habitacion import Habitacion
 
 class Reserva(models.Model):
 
-    no_reserva = models.CharField(primary_key=True, max_length=10, unique=True, null=False)
+    no_reserva = models.BigAutoField(primary_key=True)#Numero entero grande serial-autoincrement
     fecha_entrada = models.DateTimeField(null=False, unique=False)
     numero_dias = models.IntegerField(unique=False, null=False)
     cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE,null=False)

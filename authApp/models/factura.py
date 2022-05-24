@@ -5,7 +5,8 @@ from .reserva import Reserva
 
 class Factura(models.Model):
 
-    no_factura = models.CharField(primary_key=True, max_length=6, unique=True, null=False)
+
+    no_factura = models.BigAutoField(primary_key=True)#Numero entero grande serial-autoincrement
     fecha_factura = models.DateTimeField(null=False, default= timezone.now())
     precio_total = models.IntegerField(unique=False, null=False)
     reserva = models.ForeignKey(Reserva, on_delete=models.CASCADE,null=False)

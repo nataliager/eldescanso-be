@@ -4,6 +4,6 @@ from django.utils import timezone
 
 class Checkout(models.Model):
 
-    no_checkout = models.CharField(primary_key=True, max_length=10, unique=True, null=False)
+    no_checkout = models.BigAutoField(primary_key=True)#Numero entero grande serial-autoincrement
     fecha_salida = models.DateTimeField(unique=False, null=False, default= timezone.now())
     cliente = models.ForeignKey(Cliente,  on_delete=models.CASCADE, null=False)
