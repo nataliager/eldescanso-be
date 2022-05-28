@@ -10,6 +10,7 @@ from .userView import InformeMensualServicios
 from .solicitudCreateView import SolicitudCreateView
 from .solicitudView import SolicitudView
 from .solicitudView import DetailSolicitudView
+from .solicitudView import SolicitudFilter
 
 #Servicio
 from .servicioCreateView import ServicioCreateView
@@ -22,12 +23,12 @@ from .habitacionView import HabitacionView
 from .habitacionView import DetailHabitacionView
 from .habitacionView import HabitacionFilter
 from .habitacionView import PrecioHabitacionFilter
+from .habitacionView import OcupacionHotel
 
 #Tipo habitación
 from .tipoHabitacionCreateView import TipoHabitacionCreateView
 from .tipoHabitacionView import TipoHabitacionView
 from .tipoHabitacionView import DetailTipoHabitacionView
-from .tipoHabitacionView import TipoHabitacionFilter
 
 #Checkout
 from .checkoutCreateView import CheckoutCreateView
@@ -39,6 +40,8 @@ from .checkoutView import CheckoutCliente
 from .facturaCreateView import FacturaCreateView
 from .facturaView import FacturaView
 from .facturaView import DetailFacturaView
+from .facturaView import PorcentajeCancelacion
+
 
 #Servicio_incluido
 from .servicioIncluidoCreateView import ServicioIncluidoCreateView

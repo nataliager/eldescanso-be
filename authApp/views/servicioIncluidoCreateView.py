@@ -1,8 +1,11 @@
 from rest_framework import views
 from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated
 from authApp.serializers.servicioIncluidoSerializer import ServicioIncluidoSerializer
 
 class ServicioIncluidoCreateView(views.APIView):
+
+    permission_classes = [IsAuthenticated]
 
     #Crea una tabla de servicios incluidos en factura en la BD 
     def post(self, request, *args, **kwargs): 

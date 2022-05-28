@@ -41,7 +41,7 @@ class HabitacionSerializerRepresentation(serializers.ModelSerializer):
                 'no_habitacion': habitacion.no_habitacion,
                 'tipo': {
                     'tipo': tipohabitacion.tipo,
-                    'caracteristicas': tipohabitacion.caracteristicas,
+                    'descripcion': tipohabitacion.descripcion,
                     'precio': tipohabitacion.precio
                 },
                 'estado': habitacion.estado,

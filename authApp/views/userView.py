@@ -14,7 +14,6 @@ from authApp.serializers.servicioIncluidoSerializer import ServicioIncluidoSeria
 from authApp.models.user import User
 from authApp.models.factura import Factura
 from authApp.models.servicio_incluido import Servicio_incluido
-from authApp.models.servicio import Servicio
 
 
 class UserView(views.APIView):
@@ -82,6 +81,8 @@ class DetailUserView(generics.RetrieveUpdateDestroyAPIView):
 #Clase que retorna un informe mensual de las ventas en el hotel el descanso
 class InformeMensual(APIView):
 
+    permission_classes = [IsAuthenticated]
+
     def get(self, request, *args, **kwargs):
 
         facturas = Factura.objects.filter(fecha_factura__contains=request.query_params.get(
@@ -104,12 +105,14 @@ class InformeMensual(APIView):
             
             return {
                 'Ventas': resultado_total_dia,
-                'total ventas': totalVentas
+                'total_ventas': totalVentas
             }
         return Response(dicti_result())
 
 #Clase que retorna un informe de ventas de los servicios en el hotel el descanso
 class InformeMensualServicios(APIView):
+
+    permission_classes = [IsAuthenticated]
 
     def get(self, request, *args, **kwargs):
 
@@ -118,31 +121,13 @@ class InformeMensualServicios(APIView):
 
         def dicti_result() -> dict:
             dicti = {}
-            contBar = 0
-            contLav = 0
-            contLld = 0
-            contPlan = 0
-            contRes = 0  
-
+            
             for i in servicios:
-                fecha = ServicioIncluidoSerializer(i).data.get('fecha_servicio')
+
                 servicio = ServicioIncluidoSerializer(i).data.get('servicio')
 
-                if servicio == 'BAR':
-                    contBar += 1
-                elif servicio == 'LAV':
-                    contLav += 1
-                elif servicio == 'LLD':
-                    contLld += 1
-                elif servicio == 'PLAN':
-                    contPlan += 1
-                elif servicio == 'RES':
-                    contRes += 1
-
-                #fecha_filtro = fecha[0:str(fecha).find('T')]
                 if servicio in dicti.keys():
-                    dicti[servicio].append(int(1))
-                    
+                    dicti[servicio].append(int(1))   
                 else:
                     dicti[servicio] = []
                     dicti[servicio].append(int(1))
@@ -151,12 +136,7 @@ class InformeMensualServicios(APIView):
             totalVentas = sum([int(resultado_servicios[0][n]) for n in resultado_servicios[0]])
 
             return {
-                'Ventas servicio': resultado_servicios,
-                'total planchado': contPlan ,
-                'total lavado': contLav,
-                'total bar': contBar,
-                'total llamadas': contLld,
-                'total restaurante': contRes,
-                'total ventas': totalVentas
-                }
+                'ventas_servicio': resultado_servicios[0],
+                'total_ventas':totalVentas,
+            }
         return Response(dicti_result())

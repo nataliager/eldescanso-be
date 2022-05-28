@@ -1,13 +1,11 @@
 from rest_framework.response import Response
-from rest_framework.permissions import IsAuthenticated
 from rest_framework.views import APIView
+from rest_framework.permissions import IsAuthenticated
 from authApp.models.solicitud import Solicitud
 from authApp.serializers.solicitudSerializer import SolicitudSerializer
 from rest_framework import generics
 
 class SolicitudView(APIView):
-
-    permission_classes = [IsAuthenticated]
 
     #Obtiene todas las solicitudes de la BD
     def get(self, request, *args, **kwargs):
@@ -22,8 +20,6 @@ class SolicitudView(APIView):
 #Vista concreta para recuperar, actualizar o eliminar una instancia de modelo
 class DetailSolicitudView(generics.RetrieveUpdateDestroyAPIView):
 
-    permission_classes = [IsAuthenticated]
-
     queryset = Solicitud.objects.all()
     serializer_class = SolicitudSerializer
 
@@ -31,3 +27,20 @@ class DetailSolicitudView(generics.RetrieveUpdateDestroyAPIView):
     #PUT funciona correctamente
     #GET funciona correctamente
     #DELETE funciona correctamente
+
+#Obtener listado de habitaciones disponibles
+class SolicitudFilter(APIView):
+
+    permission_classes = [IsAuthenticated]
+
+    #metodo GET funciona correctamente
+    def get(self, request, *args, **kwargs):
+        
+        solicitudes = Solicitud.objects.filter(estado=request.query_params.get('estado')).distinct()
+        tmp = []
+        for u in solicitudes:
+            if SolicitudSerializer(u).data.get('estado') == "pendiente":
+                tmp.append(SolicitudSerializer(u).data)
+        return Response({
+            'solicitudes': tmp
+        })

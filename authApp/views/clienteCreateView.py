@@ -1,8 +1,11 @@
 from rest_framework import views
 from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated
 from authApp.serializers.clienteSerializer import ClienteSerializer
 
 class ClienteCreateView(views.APIView):
+
+    permission_classes = [IsAuthenticated]
 
     #Crea un cliente en la BD 
     def post(self, request, *args, **kwargs): 

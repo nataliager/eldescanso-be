@@ -22,6 +22,7 @@ urlpatterns = [
     path('solicitud/', views.SolicitudCreateView.as_view()),#crear una solicitud 
     path('solicitudes/', views.SolicitudView.as_view()),#obtener todas las solicitudes
     path('solicitud/<str:pk>/', views.DetailSolicitudView.as_view()),#crud solicitud
+    path('solicitudfilter/', views.SolicitudFilter.as_view()),#obtener las solicitudes pendientes
 
     #URLs modelo Servicio
     path('servicio/', views.ServicioCreateView.as_view()),#crear un servicio
@@ -34,12 +35,12 @@ urlpatterns = [
     path('habitacion/<int:pk>/', views.DetailHabitacionView.as_view()),#crud habitacion
     path('habitacionfilter/', views.HabitacionFilter.as_view()),#filtro habitaciones disponibles por tipo
     path('habitacionpreciofilter/', views.PrecioHabitacionFilter.as_view()),#filtro precio de habitacion de acuerdo a su tipo
+    path('ocupacionhotel/', views.OcupacionHotel.as_view()), #porcentaje de ocupacion del hotel mensual 
 
     #URLs modelo TipoHabitacion
     path('tipohabitacion/', views.TipoHabitacionCreateView.as_view()),#crear una habitacion
     path('tipohabitaciones/', views.TipoHabitacionView.as_view()),#obtener todos los tipos de habitacion
     path('tipohabitacion/<str:pk>/', views.DetailTipoHabitacionView.as_view()),#crud tipo habitacion
-    path('tipohabitacionfilter/', views.TipoHabitacionFilter.as_view()),#crud tipo habitacion
 
     #URLs modelo Checkout 
     path('checkout/', views.CheckoutCreateView.as_view()),#crear un checkout
@@ -51,6 +52,7 @@ urlpatterns = [
     path('factura/', views.FacturaCreateView.as_view()),#crear una factura
     path('facturas/', views.FacturaView.as_view()),#obtener todas las facturas
     path('factura/<str:pk>/', views.DetailFacturaView.as_view()),#crud factura
+    path('porcentajecancelacion/', views.PorcentajeCancelacion.as_view()),#porcentaje cancelacion reservas
 
     #URLs modelo Servicio_incluido -- SIN PROBAR
     path('servicioincluido/', views.ServicioIncluidoCreateView.as_view()),#agregar un servicio incluido 

@@ -34,7 +34,9 @@ class DetailServicioIncluidoView(generics.RetrieveUpdateDestroyAPIView):
 
 #Servicios incluidos a una factura
 class ServiciosFactura(APIView):
-    
+
+    permission_classes = [IsAuthenticated]
+  
     #metodo GET funciona correctamente
     def get(self, request, *args, **kwargs):
         

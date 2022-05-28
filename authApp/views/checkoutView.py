@@ -35,6 +35,8 @@ class DetailCheckoutView(generics.RetrieveUpdateDestroyAPIView):
 #Obtener datos de un checkout por cliente
 class CheckoutCliente(APIView):
 
+    permission_classes = [IsAuthenticated]
+
     #metodo GET funciona correctamente
     def get(self, request, *args, **kwargs):
         

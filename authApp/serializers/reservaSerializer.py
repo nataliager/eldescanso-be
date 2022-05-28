@@ -2,8 +2,11 @@ from rest_framework import serializers
 from authApp.models.reserva import Reserva
 from authApp.models.cliente import Cliente
 from authApp.models.habitacion import Habitacion
-from authApp.serializers.habitacionSerializer import HabitacionSerializer
+from authApp.models.tipo_habitacion import TipoHabitacion
+from authApp.serializers import tipoHabitacionSerializer
+from authApp.serializers.habitacionSerializer import HabitacionSerializer, HabitacionSerializerRepresentation
 from authApp.serializers.clienteSerializer import ClienteSerializer
+from authApp.serializers.tipoHabitacionSerializer import TipoHabitacionSerializer
 from django.http.response import Http404
 
 class ReservaSerializer(serializers.ModelSerializer):
@@ -31,7 +34,8 @@ class ReservaSerializer(serializers.ModelSerializer):
 class ReservaSerializerRepresentation(serializers.ModelSerializer):
     
     cliente = ClienteSerializer() 
-    habitacion = HabitacionSerializer()
+    habitacion = HabitacionSerializerRepresentation()
+    #tipo = TipoHabitacionSerializer()
 
     class Meta:
 

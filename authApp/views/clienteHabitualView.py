@@ -35,12 +35,14 @@ class DetailClienteHabitualView(generics.RetrieveUpdateDestroyAPIView):
 #Obtiene el descuento de un cliente habitual por su no_identificacion
 class ClienteHabitualFilter(APIView):
 
+    permission_classes = [IsAuthenticated]
+
     def get(self, request, *args, **kwargs):
         
         clientehabitual = ClienteHabitual.objects.filter(no_identificacion=request.query_params.get('no_identificacion')).distinct()
-        tmp = []
+        descuento = 0
         for u in clientehabitual:
-            tmp.append(ClienteHabitualSerializer(u).data.get('descuento'))
+            descuento = (ClienteHabitualSerializer(u).data.get('descuento'))
         return Response({
-            'descuento': tmp
+            'descuento': descuento
         })

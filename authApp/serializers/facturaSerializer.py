@@ -3,7 +3,7 @@ from authApp.models.checkout import Checkout
 from authApp.models.factura import Factura
 from authApp.models.reserva import Reserva
 from authApp.serializers.checkoutSerializer import CheckoutSerializer
-from authApp.serializers.reservaSerializer import ReservaSerializer
+from authApp.serializers.reservaSerializer import ReservaSerializerRepresentation
 
 class FacturaSerializer(serializers.ModelSerializer):
 
@@ -28,7 +28,7 @@ class FacturaSerializer(serializers.ModelSerializer):
 
 class FacturaSerializerRepresentation(serializers.ModelSerializer):
 
-    reserva = ReservaSerializer()
+    reserva = ReservaSerializerRepresentation()
     checkout = CheckoutSerializer()
     
     class Meta:

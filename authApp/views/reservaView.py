@@ -35,6 +35,8 @@ class DetailReservaView(generics.RetrieveUpdateDestroyAPIView):
 #Obtener datos de una reserva por el cliente
 class ReservasCliente(APIView):
 
+    permission_classes = [IsAuthenticated]
+
     #metodo GET funciona correctamente
     def get(self, request, *args, **kwargs):
         

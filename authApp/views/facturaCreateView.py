@@ -1,8 +1,11 @@
 from rest_framework import views
 from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated
 from authApp.serializers.facturaSerializer import FacturaSerializer
 
 class FacturaCreateView(views.APIView):
+
+    permission_classes = [IsAuthenticated]
 
     #Crea una factura en la BD 
     def post(self, request, *args, **kwargs): 
