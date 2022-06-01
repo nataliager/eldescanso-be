@@ -9,3 +9,7 @@ class Solicitud(models.Model):
     estado = models.CharField(max_length=45, unique=False, null=False, default="pendiente")
     
 
+
+
+
+

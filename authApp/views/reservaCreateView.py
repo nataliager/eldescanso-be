@@ -15,4 +15,4 @@ class ReservaCreateView(views.APIView):
         serializer.save()#guarda en la bd
 
         #Respuesta: codigo de respuesta CREADO
-        return Response({"detail" : "Reserva registrada exitosamente!!"})
+        return Response(serializer.data)

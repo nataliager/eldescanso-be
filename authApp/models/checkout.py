@@ -7,3 +7,11 @@ class Checkout(models.Model):
     no_checkout = models.BigAutoField(primary_key=True)#Numero entero grande serial-autoincrement
     fecha_salida = models.DateTimeField(unique=False, null=False, default= timezone.now())
     cliente = models.ForeignKey(Cliente,  on_delete=models.CASCADE, null=False)
+
+
+
+
+
+
+
+    

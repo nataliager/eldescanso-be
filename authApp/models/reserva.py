@@ -9,3 +9,9 @@ class Reserva(models.Model):
     numero_dias = models.IntegerField(unique=False, null=False)
     cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE,null=False)
     habitacion = models.ForeignKey(Habitacion, on_delete=models.CASCADE,null=False)
+
+
+
+
+
+    

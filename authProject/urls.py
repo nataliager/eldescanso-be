@@ -34,7 +34,7 @@ urlpatterns = [
     path('habitaciones/', views.HabitacionView.as_view()),#obtener todas las habitaciones
     path('habitacion/<int:pk>/', views.DetailHabitacionView.as_view()),#crud habitacion
     path('habitacionfilter/', views.HabitacionFilter.as_view()),#filtro habitaciones disponibles por tipo
-    path('habitacionpreciofilter/', views.PrecioHabitacionFilter.as_view()),#filtro precio de habitacion de acuerdo a su tipo
+    path('habitacionpreciofilter/', views.PrecioHabitacionFilter.as_view()),#filtro precio de habitacion de acuerdo a su tipo **
     path('ocupacionhotel/', views.OcupacionHotel.as_view()), #porcentaje de ocupacion del hotel mensual 
 
     #URLs modelo TipoHabitacion
@@ -69,7 +69,7 @@ urlpatterns = [
     path('clientehabitual/', views.ClienteHabitualCreateView.as_view()),#crear un cliente habitual
     path('clienteshabituales/', views.ClienteHabitualView.as_view()),#obtener todos los clientes habituales
     path('clientehabitual/<int:pk>/', views.DetailClienteHabitualView.as_view()),#crud cliente habitual
-    path('clientehabitualfilter/', views.ClienteHabitualFilter.as_view()),#crud cliente habitual
+    path('clientehabitualfilter/', views.ClienteHabitualFilter.as_view()),#filtro **
 
     #URLs modelo Reserva 
     path('reserva/', views.ReservaCreateView.as_view()),#registrar una reserva

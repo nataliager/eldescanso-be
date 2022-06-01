@@ -45,3 +45,8 @@ class User(AbstractBaseUser, PermissionsMixin): #herencia multiple
 
     objects = UserManager() #obejetos para la autentiacion
     USERNAME_FIELD = 'username' 
+
+
+
+
+    

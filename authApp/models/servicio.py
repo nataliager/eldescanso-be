@@ -6,3 +6,7 @@ class Servicio(models.Model):
     nombre = models.CharField(max_length=50, unique=False, null=False)
     precio = models.IntegerField(unique=False, null=False)
     
+
+
+
+    

@@ -43,7 +43,7 @@ class HabitacionFilter(APIView):
         habitaciones = Habitacion.objects.filter(tipo=request.query_params.get('tipo')).distinct()
         tmp = []
         for u in habitaciones:
-            if HabitacionSerializerRepresentation(u).data.get('estado') == "Disponible":
+            if HabitacionSerializerRepresentation(u).data.get('estado') == "disponible":
                 tmp.append(HabitacionSerializerRepresentation(u).data)
         return Response({
             'habitaciones': tmp
@@ -81,6 +81,7 @@ class OcupacionHotel(APIView):
             total_habitaciones = HabitacionSerializerRepresentation(i).data
             total_habitaciones_hotel += 1   
             
+            
     
         dicti = {} 
         contOcupada = 0
@@ -94,9 +95,9 @@ class OcupacionHotel(APIView):
             #print(habitacion['no_habitacion'])
             fecha_filtro = fecha[0:str(fecha).find('T')]
             if fecha_filtro in dicti.keys():
-                if str(habitacion['estado']) == "Ocupada":
+                if str(habitacion['estado']) == "ocupada":
                     dicti[fecha_filtro].append(int(1))
-            elif str(habitacion['estado']) == "Ocupada":
+            elif str(habitacion['estado']) == "ocupada":
                 dicti[fecha_filtro] = []
                 dicti[fecha_filtro].append(int(1))
             
