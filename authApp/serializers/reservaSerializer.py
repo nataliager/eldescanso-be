@@ -14,7 +14,7 @@ class ReservaSerializer(serializers.ModelSerializer):
     class Meta:
 
         model = Reserva
-        fields = ['no_reserva', 'fecha_entrada', 'numero_dias',"cliente","habitacion"]  
+        fields = ['no_reserva', 'fecha_entrada', 'numero_dias',"cliente","habitacion","cancelada"]  
 
         def to_representation(self, obj):  
 
@@ -28,7 +28,7 @@ class ReservaSerializer(serializers.ModelSerializer):
                 'numero_dias': reserva.numero_dias,
                 'cliente': cliente.no_identificacion,
                 'habitacion': habitacion.no_habitacion,
-                
+                'cancelada': reserva.cancelada,
             }
 
 class ReservaSerializerRepresentation(serializers.ModelSerializer):
@@ -40,7 +40,7 @@ class ReservaSerializerRepresentation(serializers.ModelSerializer):
     class Meta:
 
         model = Reserva
-        fields = ['no_reserva', 'fecha_entrada', 'numero_dias',"cliente","habitacion"]  
+        fields = ['no_reserva', 'fecha_entrada', 'numero_noches',"cliente","habitacion","cancelada"]  
 
         def to_representation(self, obj):  
 
@@ -51,7 +51,7 @@ class ReservaSerializerRepresentation(serializers.ModelSerializer):
             return {
                 'no_reserva': reserva.no_reserva,
                 'fecha_entrada': reserva.fecha_entrada,
-                'numero_dias': reserva.numero_dias,
+                'numero_noches': reserva.numero_dias,
                 'cliente': {
                     'no_identificacion': cliente.no_identificacion,
                     'nombre' : cliente.nombre,
@@ -61,7 +61,8 @@ class ReservaSerializerRepresentation(serializers.ModelSerializer):
                 'habitacion': {
                     'no_habitacion': habitacion.no_habitacion,
                     'estado': habitacion.estado
-                }   
+                },
+                'cancelada': reserva.cancelada,  
             }
 
     #Valida si la reserva esta en la BD

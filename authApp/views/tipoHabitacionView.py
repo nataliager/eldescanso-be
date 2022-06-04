@@ -9,7 +9,7 @@ class TipoHabitacionView(APIView):
     #Obtiene todos los tipos de habitaciones de la BD
     def get(self, request, *args, **kwargs):
 
-        tipohabitacion = TipoHabitacion.objects.all()
+        tipohabitacion = TipoHabitacion.objects.all().order_by('tipo')
         serializer = TipoHabitacionSerializer(tipohabitacion,many=True)
 
         return Response(serializer.data)

@@ -10,7 +10,7 @@ class SolicitudView(APIView):
     #Obtiene todas las solicitudes de la BD
     def get(self, request, *args, **kwargs):
 
-        solicitud = Solicitud.objects.all()
+        solicitud = Solicitud.objects.all().order_by('id')
         serializer = SolicitudSerializer(solicitud,many=True)
 
         return Response(serializer.data)
@@ -36,7 +36,7 @@ class SolicitudFilter(APIView):
     #metodo GET funciona correctamente
     def get(self, request, *args, **kwargs):
         
-        solicitudes = Solicitud.objects.filter(estado=request.query_params.get('estado')).distinct()
+        solicitudes = Solicitud.objects.filter(estado=request.query_params.get('estado')).distinct().order_by('id')
         tmp = []
         for u in solicitudes:
             if SolicitudSerializer(u).data.get('estado') == "pendiente":

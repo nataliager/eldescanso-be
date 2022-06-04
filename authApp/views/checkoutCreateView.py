@@ -15,4 +15,4 @@ class CheckoutCreateView(views.APIView):
         serializer.save()#guarda en la bd
 
         #Respuesta: codigo de respuesta CREADO
-        return Response({"detail" : "Checkout registrado exitosamente!!"})
+        return Response(serializer.data)

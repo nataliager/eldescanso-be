@@ -11,7 +11,7 @@ class UserDetailView(APIView):
     #Obtiene todos los usuarios de la BD
     def get(self, request, *args, **kwargs):
 
-        users = User.objects.all()
+        users = User.objects.all().order_by('nombre')
         serializer = UserSerializer(users,many=True)
 
         return Response(serializer.data)

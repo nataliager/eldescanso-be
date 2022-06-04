@@ -14,7 +14,7 @@ class HabitacionView(APIView):
     #Obtiene todas las habitaciones de la BD
     def get(self, request, *args, **kwargs):
 
-        habitacion = Habitacion.objects.all()
+        habitacion = Habitacion.objects.all().order_by('no_habitacion')
         serializer = HabitacionSerializerRepresentation(habitacion,many=True)
 
         return Response(serializer.data)
@@ -56,7 +56,7 @@ class PrecioHabitacionFilter(APIView):
     
     def get(self, request, *args, **kwargs):
         
-        habitacion = Habitacion.objects.filter(no_habitacion=request.query_params.get('no_habitacion')).distinct()
+        habitacion = Habitacion.objects.filter(no_habitacion=request.query_params.get('no_habitacion')).distinct().order_by('no_habitacion')
         tmp = []
         for u in habitacion:
             tmp.append(HabitacionSerializerRepresentation(u).data.get('tipo'))
@@ -73,7 +73,7 @@ class OcupacionHotel(APIView):
         reservas = Reserva.objects.filter(fecha_entrada__contains=request.query_params.get(
             'fecha_entrada')).order_by('fecha_entrada')
 
-        habitaciones = Habitacion.objects.all().order_by('no_habitacion').distinct()
+        habitaciones = Habitacion.objects.all().order_by('no_habitacion').distinct().order_by('no_habitacion')
 
         total_habitaciones_hotel = 0
 

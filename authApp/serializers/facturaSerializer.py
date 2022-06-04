@@ -48,9 +48,10 @@ class FacturaSerializerRepresentation(serializers.ModelSerializer):
                 'reserva': {
                     'no_reserva': reserva.no_reserva,
                     'fecha_entrada' : reserva.fecha_entrada,
-                    'numero_dias': reserva.numero_dias,
+                    'numero_noches': reserva.numero_dias,
                     'cliente': reserva.cliente,
-                    'habitacion': reserva.habitacion
+                    'habitacion': reserva.habitacion,
+                    'cancelada': reserva.cancelada
                 },
                 'checkout': {
                     'no_checkout': checkout.no_checkout,

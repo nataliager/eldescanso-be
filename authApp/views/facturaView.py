@@ -27,7 +27,7 @@ class DetailFacturaView(generics.RetrieveUpdateDestroyAPIView):
 
     permission_classes = [IsAuthenticated]
 
-    queryset = Factura.objects.all().order_by('no_factura')
+    queryset = Factura.objects.all().order_by('fecha_factura')
     serializer_class = FacturaSerializerRepresentation
 
     #PATCH funciona correctamente
@@ -43,26 +43,29 @@ class PorcentajeCancelacion(APIView):
     #metodo GET funciona correctamente
     def get(self, request, *args, **kwargs):
         
-        facturas = Factura.objects.all().order_by('fecha_factura').distinct()
-        contFact = 0
+        #facturas = Factura.objects.all().order_by('fecha_factura').distinct()
+        #contFact = 0
         
         reservas = Reserva.objects.all().order_by('fecha_entrada').distinct()
         contRes = 0
+        contCan = 0
 
-        for u in facturas:
-              FacturaSerializerRepresentation(u).data
-              contFact += 1
+        #for u in facturas:
+              #FacturaSerializerRepresentation(u).data
+              #contFact += 1
 
         for u in reservas:
-            ReservaSerializerRepresentation(u).data
-            contRes += 1
+            if ReservaSerializerRepresentation(u).data.get('cancelada') == True:
+                contCan += 1
+            else:
+                contRes += 1
 
-        calculo = (contFact / contRes) * 1
+        calculo = (contCan / contRes) * 1
         perCan = float("{0:.4f}".format(calculo))
         
         
         return Response({
-            'porcentaje_cancelacion': 1 - perCan
+            'porcentaje_cancelacion': perCan
         })
 
 

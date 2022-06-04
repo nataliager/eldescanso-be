@@ -9,7 +9,7 @@ class ServicioView(APIView):
     #Obtiene todos los servicios de la BD
     def get(self, request, *args, **kwargs):
 
-        servicio = Servicio.objects.all()
+        servicio = Servicio.objects.all().order_by('cod_servicio')
         serializer = ServicioSerializer(servicio,many=True)
 
         return Response(serializer.data)

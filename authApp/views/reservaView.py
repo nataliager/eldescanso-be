@@ -12,7 +12,7 @@ class ReservaView(APIView):
     #Obtiene todas las reservas de la BD
     def get(self, request, *args, **kwargs):
 
-        reserva = Reserva.objects.all()
+        reserva = Reserva.objects.all().order_by('fecha_entrada')
         serializer = ReservaSerializerRepresentation(reserva,many=True)
 
         return Response(serializer.data)
@@ -40,7 +40,7 @@ class ReservasCliente(APIView):
     #metodo GET funciona correctamente
     def get(self, request, *args, **kwargs):
         
-        reservas =  Reserva.objects.filter(cliente=request.query_params.get('cliente')).distinct()
+        reservas =  Reserva.objects.filter(cliente=request.query_params.get('cliente')).distinct().order_by('fecha_entrada')
         tmp = []
         for u in reservas:
             tmp.append(ReservaSerializerRepresentation(u).data)

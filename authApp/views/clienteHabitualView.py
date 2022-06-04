@@ -12,7 +12,7 @@ class ClienteHabitualView(APIView):
     #Obtiene todos los clientes habituales de la BD
     def get(self, request, *args, **kwargs):
 
-        clientehabitual = ClienteHabitual.objects.all()
+        clientehabitual = ClienteHabitual.objects.all().order_by('id')
         serializer = ClienteHabitualSerializer(clientehabitual,many=True)
 
         return Response(serializer.data)

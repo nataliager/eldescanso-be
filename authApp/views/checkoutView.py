@@ -12,7 +12,7 @@ class CheckoutView(APIView):
     #Obtiene todas los checkouts de la BD
     def get(self, request, *args, **kwargs):
 
-        checkout = Checkout.objects.all()
+        checkout = Checkout.objects.all().order_by('fecha_salida')
         serializer = CheckoutSerializer(checkout,many=True)
 
         return Response(serializer.data)
@@ -40,7 +40,7 @@ class CheckoutCliente(APIView):
     #metodo GET funciona correctamente
     def get(self, request, *args, **kwargs):
         
-        checkouts =  Checkout.objects.filter(cliente=request.query_params.get('cliente')).distinct()
+        checkouts =  Checkout.objects.filter(cliente=request.query_params.get('cliente')).distinct().order_by('fecha_salida')
         tmp = []
         for u in checkouts:
             tmp.append(CheckoutSerializer(u).data)

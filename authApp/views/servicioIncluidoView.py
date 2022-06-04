@@ -12,7 +12,7 @@ class ServicioIncluidoView(APIView):
     #Obtiene todos los servicio incluidos en factura de la BD
     def get(self, request, *args, **kwargs):
 
-        servicioincluido = Servicio_incluido.objects.all()
+        servicioincluido = Servicio_incluido.objects.all().order_by('fecha_servicio')
         serializer = ServicioIncluidoSerializer(servicioincluido,many=True)
 
         return Response(serializer.data)
@@ -40,7 +40,7 @@ class ServiciosFactura(APIView):
     #metodo GET funciona correctamente
     def get(self, request, *args, **kwargs):
         
-        servicios =  Servicio_incluido.objects.filter(factura=request.query_params.get('factura')).distinct()
+        servicios =  Servicio_incluido.objects.filter(factura=request.query_params.get('factura')).distinct().order_by('fecha_servicio')
         tmp = []
         for u in servicios:
             tmp.append(ServicioIncluidoSerializer(u).data)

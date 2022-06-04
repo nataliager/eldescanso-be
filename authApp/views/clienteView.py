@@ -12,7 +12,7 @@ class ClienteView(APIView):
     #Obtiene todos los clientes de la BD
     def get(self, request, *args, **kwargs):
 
-        cliente = Cliente.objects.all()
+        cliente = Cliente.objects.all().order_by('nombre')
         serializer = ClienteSerializer(cliente,many=True)
 
         return Response(serializer.data)
